@@ -16,5 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with LibPhotostat. If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by: Abdallah "Abdallah-Moh" Mohammad <abdullah_mam1@icloud.com>
-*/
+ * Authored by: Ashish Shevale <shevaleashish@gmail.com>
+ */
+
+public LibPhotostat.ImageIO.Writer {
+    public Writer () {
+
+    }
+}

@@ -6,7 +6,9 @@ conf.set('PROJECT_VERSION', '0.0.1')
 conf.set('API_VERSION', API_VERSION)
 
 sources = files([
-  'library.vala'
+  'Image.vala',
+  'AbstractOperation.vala',
+  'ImageIO/Reader.vala'
   ])
 
 liblibphotostat = library('libphotostat-' + API_VERSION,
