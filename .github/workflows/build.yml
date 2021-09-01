@@ -1,0 +1,24 @@
+name: "CI"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: elementary/docker:unstable
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: |
+          apt update
+          apt install -y valac meson libgdk-pixbuf2.0-dev libglib2.0 gir1.2-gobject-2.0
+      - name: Build
+        run: |
+          meson build
+          ninja -C build
+          ninja -C build install
