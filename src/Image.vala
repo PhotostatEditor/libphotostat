@@ -19,6 +19,6 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public class LibPhotostat.Image : Gdk.Pixbuf {
-
+public class LibPhotostat.Image {
+    public Gdk.Pixbuf image;
 }

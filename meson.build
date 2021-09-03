@@ -1,21 +1,9 @@
 project('libphotostat', 'vala', 'c',
   version: '0.0.1')
 
-dependencies = [
-  dependency('glib-2.0'),
-  dependency('gdk-pixbuf-2.0'),
-  dependency('gobject-2.0')
-]
-
-pkgconfig = import('pkgconfig')
-
-PKGCONFIG_DEPS = ['glib-2.0', 'gobject-2.0', 'gdk-pixbuf-2.0', 'gdk-3.0']
-API_VERSION = '0.1'
-vapidir = get_option('datadir') / 'vala' / 'vapi'
-
-add_project_arguments(['--enable-experimental'], language: 'vala')
-
-g_ir_compiler = find_program('g-ir-compiler', required: false)
+gobject = dependency('gobject-2.0', version: '>=2.0')
+glib = dependency('glib-2.0', version: '>=2.0')
+gdk = dependency('gdk-3.0', version: '>=3.0')
 
 subdir('src')
 subdir('tests')

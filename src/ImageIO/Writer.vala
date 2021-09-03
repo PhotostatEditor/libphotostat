@@ -19,8 +19,28 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public LibPhotostat.ImageIO.Writer {
-    public Writer () {
+public class LibPhotostat.ImageIO.Writer : AbstractOperation {
+    private string file_name;
+    private string format;
+    private Gdk.Pixbuf image;
 
+    public bool success;
+
+    public Writer (string file_name, Gdk.Pixbuf image, string format) {
+        this.file_name = file_name;
+        this.format = format;
+        this.image = image;
+
+        success = false;
+    }
+
+    public override void perform_operation () {
+        try {
+            image.save (file_name, format);
+            success = true;
+        } catch (Error e) {
+            print (e.message);
+            success = false;
+        }
     }
 }

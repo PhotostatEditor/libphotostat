@@ -1,7 +1,3 @@
-unit_test_files = [
-    'ImageIO/test_Reader.vala'
-]
-
 copy = find_program('copy_resources.py')
 
 run_command(
@@ -10,6 +6,5 @@ run_command(
     join_paths('images', 'image_1.png')
 )
 
-foreach name : unit_test_files
-    test(name, executable(name, name, sources, dependencies: dependencies))
-endforeach
+test('Reader', executable('Reader', 'ImageIO/test_Reader.vala', sources, dependencies: dependencies))
+test('Writer', executable('Writer', 'ImageIO/test_Writer.vala', sources, dependencies: dependencies))

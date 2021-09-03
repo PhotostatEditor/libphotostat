@@ -19,7 +19,7 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public abstract class LibPhotostat.AbstractOperation {
+public class LibPhotostat.AbstractOperation {
     // The original and processed images contains the values of images before and after performing the operations.
     // This makes it easier to perform undo-redo operations on images.
     public Gdk.Pixbuf original;
@@ -33,22 +33,20 @@ public abstract class LibPhotostat.AbstractOperation {
 
     // This method must be defined for performing all the operations.
     // This method will only call other functions that do the actual computation.
-    // private abstract void perform_operation ();
-    // // Method to deallocate any resources.
-    // private abstract void clean_up ();
+    public virtual void perform_operation () {}
 
-    // construct {
-    //     // When the trigger_operation signal is triggered, only then perform the actual operation.
-    //     trigger_operation.connect (() => {
-    //         perform_operation ();
-    //     });
-    // }
-    //
-    // public void set_predecessor (AbstractOperation predecessor) {
-    //     original = predecessor.processed;
-    //     // when predecessors operation is complete, start operation.
-    //     predecessor.operation_complete.connect ( () => {
-    //         trigger_operation ();
-    //     });
-    // }
+    public AbstractOperation () {
+        // When the trigger_operation signal is triggered, only then perform the actual operation.
+        trigger_operation.connect (() => {
+            perform_operation ();
+        });
+    }
+
+    public void set_predecessor (AbstractOperation predecessor) {
+        original = predecessor.processed;
+        // when predecessors operation is complete, start operation.
+        predecessor.operation_complete.connect ( () => {
+            trigger_operation ();
+        });
+    }
 }

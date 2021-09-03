@@ -19,23 +19,18 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public class LibPhotostat.Reader : AbstractOperation {
+public class LibPhotostat.ImageIO.Reader: AbstractOperation {
     private string file_name;
 
     public Reader (string file_name) {
         this.file_name = file_name;
     }
 
-    public void run () {
-        read_file ();
-    }
-
-    private void read_file () {
-
+    public override void perform_operation () {
         try {
             processed = new Gdk.Pixbuf.from_file (file_name);
         } catch (Error e) {
-            assert (false);
+            print (e.message);
         }
     }
 }
