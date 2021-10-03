@@ -19,7 +19,7 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public class LibPhotostat.AbstractOperation {
+public abstract class LibPhotostat.AbstractOperation : Object {
     // The original and processed images contains the values of images before and after performing the operations.
     // This makes it easier to perform undo-redo operations on images.
     public Gdk.Pixbuf original;
@@ -35,7 +35,7 @@ public class LibPhotostat.AbstractOperation {
     // This method will only call other functions that do the actual computation.
     public virtual void perform_operation () {}
 
-    public AbstractOperation () {
+    construct {
         // When the trigger_operation signal is triggered, only then perform the actual operation.
         trigger_operation.connect (() => {
             perform_operation ();
