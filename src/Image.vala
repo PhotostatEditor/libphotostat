@@ -20,5 +20,25 @@
  */
 
 public class LibPhotostat.Image {
+    public enum FORMAT {
+        RGB,
+        GRAYSCALE
+    }
+
     public Gdk.Pixbuf image;
+
+    public Image.from_size (int width, int height) {
+        // The 3rd param, bits_per_channel is set to 8. This way, colors for all
+        // pixels will have values from 0 to 255.
+        image = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
+        image.fill (0);
+    }
+
+    public uchar* get_pixel (int x, int y) {
+        assert (x > 0 && x < image.width);
+        assert (y > 0 && y < image.height);
+
+        uchar* pixel = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+        return pixel;
+    }
 }

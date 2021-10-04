@@ -24,11 +24,12 @@ public class LibPhotostat.ImageIO.Reader: AbstractOperation {
 
     public Reader (string file_name) {
         this.file_name = file_name;
+        processed = new Image ();
     }
 
     public override void perform_operation () {
         try {
-            processed = new Gdk.Pixbuf.from_file (file_name);
+            processed.image = new Gdk.Pixbuf.from_file (file_name);
         } catch (Error e) {
             print (e.message);
         }

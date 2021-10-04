@@ -6,7 +6,7 @@ void test_write () {
     assert (reader.processed != null);
 
     // Now write this image to a file
-    var writer = new LibPhotostat.ImageIO.Writer ("image_written.png", reader.processed, "png");
+    var writer = new LibPhotostat.ImageIO.Writer ("image_written.png", reader.processed.image, "png");
     writer.trigger_operation ();
 
     assert (writer.success);

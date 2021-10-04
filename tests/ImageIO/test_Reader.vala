@@ -5,12 +5,12 @@ void test_read () {
 
     // As the read operation is synchronous, no need to wait for operation_complete
     // Make sure the image was read properly
-    assert (reader.processed != null);
+    assert (reader.processed.image != null);
 
     // If image was read, it must have non-zero dimensions
-    assert (reader.processed.width != 0);
-    assert (reader.processed.height != 0);
-    assert (reader.processed.get_n_channels () != 0);
+    assert (reader.processed.image.width != 0);
+    assert (reader.processed.image.height != 0);
+    assert (reader.processed.image.get_n_channels () != 0);
 }
 
 void test_fail_on_wrong_path () {
@@ -18,7 +18,7 @@ void test_fail_on_wrong_path () {
     reader.trigger_operation ();
 
     // If wrong path is given, no image will be read.
-    assert (reader.processed == null);
+    assert (reader.processed.image == null);
 }
 
 public int main (string[] args) {
