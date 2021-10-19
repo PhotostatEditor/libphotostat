@@ -34,11 +34,32 @@ public class LibPhotostat.Image {
         image.fill (0);
     }
 
-    public uchar* get_pixel (int x, int y) {
+    public uchar[] get_pixel (int x, int y) {
         assert (x > 0 && x < image.width);
         assert (y > 0 && y < image.height);
 
-        uchar* pixel = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+        uchar* pixel_ptr = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+
+        // We need to copy all values from pixel to another array, as modifying
+        // values from the pointer instead can cause permanent changes in original image.
+        uchar[4] pixel = new uchar[4];
+        pixel[0] = pixel_ptr[0];
+        pixel[1] = pixel_ptr[1];
+        pixel[2] = pixel_ptr[2];
+        pixel[3] = pixel_ptr[3];
+
         return pixel;
+    }
+
+    public void set_pixel (int x, int y, uchar red, uchar green, uchar blue, uchar alpha) {
+        assert (x > 0 && x < image.width);
+        assert (y > 0 && y < image.height);
+
+        uchar* pixel_ptr = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+
+        pixel_ptr[0] = red;
+        pixel_ptr[1] = green;
+        pixel_ptr[2] = blue;
+        pixel_ptr[3] = alpha;
     }
 }

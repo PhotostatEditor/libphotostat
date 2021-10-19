@@ -26,7 +26,7 @@ public abstract class LibPhotostat.AbstractOperation : Object {
     public Image processed;
 
     // Stores the region over which to apply the operation.
-    private Utils.Rectangle operation_bounds;
+    public Utils.Rectangle operation_bounds;
 
     // This signal should be triggered whenever the operation needs to be performed.
     // Actual computation will be handled internally.
