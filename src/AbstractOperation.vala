@@ -24,6 +24,10 @@ public abstract class LibPhotostat.AbstractOperation : Object {
     // This makes it easier to perform undo-redo operations on images.
     public Image original;
     public Image processed;
+
+    // Stores the region over which to apply the operation.
+    private Utils.Rectangle operation_bounds;
+
     // This signal should be triggered whenever the operation needs to be performed.
     // Actual computation will be handled internally.
     public signal void trigger_operation ();
@@ -38,7 +42,8 @@ public abstract class LibPhotostat.AbstractOperation : Object {
     // Operations might require some parameters. These will be added through this method.
     public virtual void set_parameters (string parameter, string value) {}
 
-    // This method is responsible for making sure that all the
+    // This method is responsible for making sure that all the parameters have correct values.
+    // Optional to implement?
     public virtual void validate_parameters () {}
 
     // This method sets the region over which to apply the operation.
