@@ -40,7 +40,7 @@ public abstract class LibPhotostat.AbstractOperation : Object {
     public virtual void perform_operation () {}
 
     // Operations might require some parameters. These will be added through this method.
-    public virtual void set_parameters (string parameter, string value) {}
+    public virtual void set_parameter (string parameter, string value) {}
 
     // This method is responsible for making sure that all the parameters have correct values.
     // Optional to implement?

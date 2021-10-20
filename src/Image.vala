@@ -31,17 +31,22 @@ public class LibPhotostat.Image {
         // The 3rd param, bits_per_channel is set to 8. This way, colors for all
         // pixels will have values from 0 to 255.
         image = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-        image.fill (0);
+        image.fill (255);
+    }
+
+    public Image copy () {
+        var clone = new Image ();
+        clone.image = this.image.copy ();
+        return clone;
     }
 
     public uchar[] get_pixel (int x, int y) {
-        assert (x > 0 && x < image.width);
-        assert (y > 0 && y < image.height);
+        assert (x >= 0 && x < image.width);
+        assert (y >= 0 && y < image.height);
 
-        uchar* pixel_ptr = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+        uchar* pixels = image.get_pixels ();
+        uchar* pixel_ptr = pixels + y * image.rowstride + x * image.n_channels;
 
-        // We need to copy all values from pixel to another array, as modifying
-        // values from the pointer instead can cause permanent changes in original image.
         uchar[4] pixel = new uchar[4];
         pixel[0] = pixel_ptr[0];
         pixel[1] = pixel_ptr[1];
@@ -52,10 +57,11 @@ public class LibPhotostat.Image {
     }
 
     public void set_pixel (int x, int y, uchar red, uchar green, uchar blue, uchar alpha) {
-        assert (x > 0 && x < image.width);
-        assert (y > 0 && y < image.height);
+        assert (x >= 0 && x < image.width);
+        assert (y >= 0 && y < image.height);
 
-        uchar* pixel_ptr = (uchar*) image.pixels + y + image.rowstride + x * image.n_channels;
+        uchar* pixels = image.get_pixels ();
+        uchar* pixel_ptr = pixels + y * image.rowstride + x * image.n_channels;
 
         pixel_ptr[0] = red;
         pixel_ptr[1] = green;
