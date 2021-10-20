@@ -11,6 +11,7 @@ sources = files([
     'ImageIO/Writer.vala',
 
     'PointOps/BrightnessContrast.vala',
+    'PointOps/Inversion.vala',
 
     'Utils/Rectangle.vala',
     'Utils/Maths.vala'

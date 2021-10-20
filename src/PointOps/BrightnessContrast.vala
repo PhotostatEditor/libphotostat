@@ -21,7 +21,7 @@
 
  /*
  Calculations for Brightness and Contrast.
-    new_channel = (old_channel - 0.5) * contrast + brightness + 0.5
+    new_channel = (old_channel - 128) * contrast + brightness + 128
 
     where, old_channel refers to either red, green or blue channel value of a pixel in source image.
     and new_channel refers to corressponding channel in output image.
