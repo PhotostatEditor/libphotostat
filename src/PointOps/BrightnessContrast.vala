@@ -67,7 +67,7 @@ public class LibPhotostat.PointOps.BrightnessContrast : AbstractOperation {
                 contrast = double.parse (value);
                 break;
             default:
-                warning ("""Invalid parameter %s given to BrightnessContrast operation.""".printf(parameter));
+                warning ("""Invalid parameter %s given to BrightnessContrast operation.""".printf (parameter));
                 break;
         }
     }
