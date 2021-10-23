@@ -53,7 +53,7 @@ public class LibPhotostat.PointOps.BrightnessContrast : AbstractOperation {
                 Utils.Maths.clamp_pixel (ref red);
                 Utils.Maths.clamp_pixel (ref green);
                 Utils.Maths.clamp_pixel (ref blue);
-                processed.set_pixel(i, j, red, green, blue, alpha);
+                processed.set_pixel (i, j, red, green, blue, alpha);
             }
         }
     }
