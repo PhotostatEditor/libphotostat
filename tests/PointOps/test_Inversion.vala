@@ -31,7 +31,7 @@ void test_bounds_setter () {
 }
 
 // Tests that setting bounds and performing operation only affects the concerned region
-void test_bounds_effect ()  {
+void test_bounds_effect () {
     var inv_op = new LibPhotostat.PointOps.Inversion ();
     inv_op.original = new LibPhotostat.Image.from_size (10, 10);
     inv_op.original.image.fill ((uint32) 0xffaaee00);
