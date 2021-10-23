@@ -48,7 +48,7 @@ public class LibPhotostat.PointOps.Inversion : AbstractOperation {
     }
 
     public override void set_parameter (string parameter, string value) {
-        warning ("""Invalid parameter %s given to Inversion operation.""".printf(parameter));
+        warning ("""Invalid parameter %s given to Inversion operation.""".printf (parameter));
     }
 
     public override void set_operation_bounds (Utils.Rectangle bounds) {
