@@ -22,8 +22,12 @@
 public abstract class LibPhotostat.AbstractOperation : Object {
     // The original and processed images contains the values of images before and after performing the operations.
     // This makes it easier to perform undo-redo operations on images.
-    public Gdk.Pixbuf original;
-    public Gdk.Pixbuf processed;
+    public Image original;
+    public Image processed;
+
+    // Stores the region over which to apply the operation.
+    public Utils.Rectangle operation_bounds;
+
     // This signal should be triggered whenever the operation needs to be performed.
     // Actual computation will be handled internally.
     public signal void trigger_operation ();
@@ -35,11 +39,23 @@ public abstract class LibPhotostat.AbstractOperation : Object {
     // This method will only call other functions that do the actual computation.
     public virtual void perform_operation () {}
 
+    // Operations might require some parameters. These will be added through this method.
+    public virtual void set_parameter (string parameter, string value) {}
+
+    // This method is responsible for making sure that all the parameters have correct values.
+    // Optional to implement?
+    public virtual void validate_parameters () {}
+
+    // This method sets the region over which to apply the operation.
+    public virtual void set_operation_bounds (Utils.Rectangle bounds) {}
+
     construct {
         // When the trigger_operation signal is triggered, only then perform the actual operation.
         trigger_operation.connect (() => {
             perform_operation ();
         });
+
+        processed = new Image ();
     }
 
     public void set_predecessor (AbstractOperation predecessor) {

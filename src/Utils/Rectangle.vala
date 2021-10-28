@@ -19,18 +19,30 @@
  * Authored by: Ashish Shevale <shevaleashish@gmail.com>
  */
 
-public class LibPhotostat.ImageIO.Reader: AbstractOperation {
-    private string file_name;
+public struct LibPhotostat.Utils.Rectangle {
+    // Note that all the dimensions are stored as integers.
+    // This is because the dimensions refer to pixels which can only be whole numbers.
+    public int x1;
+    public int y1;
+    public int x2;
+    public int y2;
 
-    public Reader (string file_name) {
-        this.file_name = file_name;
+    public Rectangle (int x1, int y1, int x2, int y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
     }
 
-    public override void perform_operation () {
-        try {
-            processed.image = new Gdk.Pixbuf.from_file (file_name);
-        } catch (Error e) {
-            print (e.message);
+    public int center_x {
+        get {
+            return (int) ( (x2 - x1) / 2 );
         }
     }
+    public int center_y {
+        get {
+            return (int) ( (y2 - y1) / 2 );
+        }
+    }
+
 }
